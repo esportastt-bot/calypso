@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CALYPSO — Cinématique d'introduction</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  #stage { position: fixed; inset: 0; width: 100vw; height: 100vh; object-fit: contain; display: block; background: #000; }
+  body.playing { cursor: none; }
+
+  #overlay {
+    position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+    background: radial-gradient(ellipse at center, #0b1a36 0%, #02040a 65%, #000 100%);
+    font-family: Rajdhani, 'Segoe UI', sans-serif; color: #8fa8cc; transition: opacity .7s ease;
+  }
+  #overlay.hidden { opacity: 0; pointer-events: none; }
+  #overlay .title { font-family: Orbitron, 'Segoe UI', sans-serif; font-weight: 700; letter-spacing: .5em; font-size: 14px; color: #5f7aa3; margin-bottom: 18px; }
+  .btn {
+    font-family: Orbitron, 'Segoe UI', sans-serif; font-weight: 500; letter-spacing: .25em; font-size: 15px;
+    color: #cfe0ff; background: rgba(40, 90, 170, .12); border: 1px solid rgba(120, 170, 255, .35);
+    padding: 16px 38px; min-width: 330px; cursor: pointer; transition: all .25s ease; border-radius: 2px;
+  }
+  .btn:hover { background: rgba(70, 140, 255, .25); border-color: rgba(160, 200, 255, .8); box-shadow: 0 0 30px rgba(80, 150, 255, .35); color: #fff; }
+  .btn.primary { font-size: 18px; padding: 20px 38px; }
+  .btn:disabled { opacity: .35; cursor: wait; }
+  .keys { margin-top: 18px; font-size: 14px; letter-spacing: .15em; color: #4f6587; }
+
+  #replay, #recdot {
+    position: fixed; font-family: Rajdhani, sans-serif; letter-spacing: .3em; font-size: 13px;
+    opacity: 0; transition: opacity .8s; pointer-events: none;
+  }
+  #replay { bottom: 3vh; left: 0; right: 0; text-align: center; color: #3c5274; }
+  #replay.show { opacity: 1; }
+  #recdot { top: 2vh; right: 2vw; color: #ff4a4a; }
+  #recdot.show { opacity: 1; animation: blink 1s infinite; }
+  @keyframes blink { 50% { opacity: .3; } }
+</style>
+</head>
+<body>
+  <canvas id="stage"></canvas>
+
+  <div id="overlay">
+    <div class="title">CINÉMATIQUE D'INTRODUCTION · 10 S</div>
+    <button id="play" class="btn primary" disabled>▶&nbsp; LANCER</button>
+    <button id="rec" class="btn" disabled>⬇&nbsp; EXPORTER EN VIDÉO</button>
+    <div class="keys">ESPACE : LANCER &nbsp;·&nbsp; R : REJOUER &nbsp;·&nbsp; F : PLEIN ÉCRAN</div>
+  </div>
+  <div id="replay">R OU CLIC POUR REJOUER</div>
+  <div id="recdot">● ENREGISTREMENT…</div>
+
+  <script src="assets/logo.js"></script>
+  <script src="assets/safran.js"></script>
+  <script src="intro.js"></script>
+</body>
+</html>
